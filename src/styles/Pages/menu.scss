@@ -1,0 +1,124 @@
+@use "../partials/variables.scss" as *;
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: flex-start;
+    padding: 5% 0% 0% 0%;
+    width: 93%;
+    height: 85%;
+    background-color: $bg-color-primary;
+    color: $color-white;
+    font-family: $font-primary;
+    border-radius: $border-radius-primary;
+    overflow-y: scroll;
+    max-height: 80vh;
+}
+
+.menu__header {
+    display: flex;
+    font-size: $font-size-h1;
+    font-weight: $font-weight-bold;
+    padding-left: 4%;
+}
+
+.menu__box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.menu__box:hover {
+    background-color: $bg-color-hover;
+}
+
+.menu__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.menu__underheader {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+}
+
+.menu__dotted {
+    border-bottom: dotted 2px rgb(255, 255, 255);
+    flex-grow: 1;
+    margin: 0 10px;
+    align-self: flex-end;
+}
+
+.menu__price {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+}
+
+.menu__info {
+    margin-top: 10px;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.menu__dotted--underline {
+    margin-top: 5%;
+    border-bottom: dotted 1px rgb(112, 112, 112);
+    width: 100%;
+}
+
+.menu__category {
+    margin-bottom: 2rem; /* Skapar mellanrum mellan kategorierna */
+    
+}
+
+.menu__category-header {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: 1rem;
+    justify-self: center;
+}
+
+.menu__subcategory {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.menu__small-box {
+    display: flex;
+    margin: 0.7rem;
+    justify-content: center;
+    align-items: center;
+    gap: 100%;
+    flex-wrap: wrap;
+    background-color: $bg-color-light-grey;
+    border-radius: $border-radius-primary;
+    width: 40%;
+    min-height: 5rem;
+    cursor: pointer;
+   
+}
+
+.menu__small-box:hover {
+    background-color: $bg-color-hover;
+}
+
+.menu__header--dropdown {
+    font-size: $font-size-lg;
+}
+
+.menu__price--dropdown {
+    font-weight: bold;
+    font-size: $font-size-xs;
+}

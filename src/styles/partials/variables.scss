@@ -1,0 +1,32 @@
+//COLORS
+$bg-color-primary: rgba(96, 88, 88, 1);
+$bg-color-secondary: rgba(142, 216, 191, 1);
+$bg-color-black: rgba(53, 49, 49, 1);
+$bg-color-white: rgba(238, 238, 238, 1);
+$bg-color-light-grey: rgba(53, 49, 49, 0.24);
+$bg-color-hover: rgb(124, 123, 123);
+
+$color-white: rgba(244, 243, 241, 0.94);
+$color-black: $bg-color-black;
+
+//FONT
+$font-primary: 'Fira Sans', serif;
+
+$font-size-h1: 2rem; //32px
+
+$font-size-xxs: .625em; //10px
+$font-size-xs: .75rem; //12px
+$font-size-sm: .875rem; //14px
+$font-size-md: .9375rem; //15px
+$font-size-lg: 1rem; //16px
+$font-size-xl: 1.375rem; //22px
+$font-size-xxl: 1.5rem; //24px
+
+//FONT-WEIGHT
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+
+// BORDER RADIUS
+$border-radius-primary: .25rem;

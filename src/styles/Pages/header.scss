@@ -1,0 +1,48 @@
+@use "../partials/variables.scss" as *;
+
+.wrapper {
+  position: relative;
+  width: 100%;;
+  max-width: 440px;
+  height: 100vh;
+  background: url("/src/assets/Backgroundimg.png") no-repeat center center;
+  background-color: $bg-color-secondary;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.background {
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px; 
+}
+
+.logo {
+  width: 68px;
+  background-color: rgba(0, 0, 0, 0.103);
+
+}
+
+.Cart__box {
+    display: flex;
+    width: 68px;
+    height: 68px;
+  background-color: $bg-color-white;
+  justify-content: center;
+  border-radius: $border-radius-primary;
+  cursor: pointer;
+}
+
+.Cart__box--img {
+    align-self: center;
+    justify-self: center;
+  width: 34px; // Adjust size as needed
+  height: auto;
+}

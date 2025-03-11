@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+li {
+    list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+img,
+video
+ {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  border: none;
+}
