@@ -1,0 +1,109 @@
+@use "../partials/variables.scss" as *;
+
+.wrappers {
+    display: flex;
+    background-color: $bg-color-primary;
+    flex-direction: column;
+    position: relative;
+    width: 100%;;
+    min-width: 440px;
+    max-width: 440px;
+    height: 100vh;
+    align-items: center;
+    font-family: $font-primary;
+    color: $color-white;
+}
+
+.status__wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    min-height: auto;
+    flex-grow: 1;
+}
+
+.status__logo {
+    align-self: flex-start;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+@keyframes spin-reverse {
+    0% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(370deg);
+    }
+    100% {
+        transform: rotate(-10deg);
+    }
+}
+
+.status__cartbox {
+    margin-top: 20%;
+    animation: spin-reverse 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+
+
+
+.status__header {
+    font-size: $font-size-h1;
+    font-weight: $font-weight-bold;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.status__time {
+    display: flex;
+    font-size: $font-size-xl;
+    margin-bottom: 1rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.status__orderid {
+    font-size: $font-size-md;
+    margin-bottom: 1rem;
+}
+
+.status__btns {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 5%;
+}
+
+
+.status__neworder--btn {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-h1;
+    font-weight: $font-weight-bold;
+    background-color: $bg-color-black;
+    color: $color-white;
+    cursor: pointer;
+    margin-bottom: 5%;
+}
+
+.status__receipt {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-h1;
+    font-weight: $font-weight-bold;
+    background-color: $bg-color-light-grey;
+    color: $color-white;
+    cursor: pointer;
+    border: 1px solid $bg-color-white;
+    align-self: flex-end;
+}

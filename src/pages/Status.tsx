@@ -1,10 +1,13 @@
 import React from 'react'
-import '../styles/Pages/status.scss'
 import '../components/etascreen'
+import '../styles/Pages/status.scss'
 
-const Status: React.FC = () => {
+
+
+const StatusPage: React.FC = () => {
     return (
-
+        <>
+        </>
     )
-
-export default Status;
+}
+export default StatusPage;

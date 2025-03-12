@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Typ för ett objekt i varukorgen
 interface CartItem {
-    id: string;
+    id: number;
     name: string;
     price: number;
     quantity: number;
@@ -29,7 +29,7 @@ const cartSlice = createSlice({
                 state.items.push({ ...action.payload, quantity: 1 });
             }
         },
-        decreaseFromCart: (state, action: PayloadAction<string>) => {
+        decreaseFromCart: (state, action: PayloadAction<number>) => {
             const existingItem = state.items.find(item => item.id === action.payload);
             if (existingItem) {
                 if (existingItem.quantity > 1) {
@@ -40,7 +40,7 @@ const cartSlice = createSlice({
                 }
             }
         },
-        removeFromCart: (state, action: PayloadAction<string>) => {
+        removeFromCart: (state, action: PayloadAction<number>) => {
             state.items = state.items.filter((item) => item.id !== action.payload);
         },
         clearCart: (state) => {

@@ -15,6 +15,8 @@ const Cart: React.FC = () => {
     
     const cartItems = useSelector((state: RootState) => state.cart.items);
 
+    
+
     const toggleCart = () => {
         setIsCartVisible(!isCartVisible);
     };
@@ -25,7 +27,13 @@ const Cart: React.FC = () => {
         setLoading(true);
 
         const tenantName = "your-tenant-name"; // Dynamiskt om du har flera tenants
-        const itemIds = cartItems.map((item) => item.id);
+        /* const itemIds = cartItems.map((item) => item.id); */
+        const itemIds = cartItems.reduce<number[]>((acc, item) => {
+            for (let i = 0; i < item.quantity; i++) {
+              acc.push(item.id);
+            }
+            return acc;
+          }, []);
 
         try {
             await dispatch(placeOrder({ tenantName, items: itemIds })).unwrap();

@@ -28,16 +28,16 @@ interface MenuResponse {
 
 // Type for Order
 interface Order {
-    items: string[];
+    items: number[];
 }
 
 // Type for Order response
-interface OrderResponse {
+export interface OrderResponse {
     id: string;
-    status: string;
+    status: string ;
     items: string[];
     timestamp: string;
-    eta: string; // eta as string
+    eta: string; // eta as string or null
     order: string;
 }
 
@@ -93,7 +93,11 @@ export const submitOrder = async (tenantName: string, order: Order): Promise<Ord
     // 💡 FIX: Returnera direkt det vi behöver
     return {
         id: data.order.id, // 👈 Plocka ut orderns ID
-        eta: data.order.eta // 👈 Plocka ut beräknad leveranstid
+        status: data.order.status,
+        items: data.order.items,
+        timestamp: data.order.timestamp,
+        eta: data.order.eta, // 👈 Plocka ut beräknad leveranstid
+        order: data.order.order,
     };
 };
 

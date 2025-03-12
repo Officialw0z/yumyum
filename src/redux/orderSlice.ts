@@ -24,7 +24,7 @@ const initialState: OrderState = {
 // Async thunk för att skicka en order
 export const placeOrder = createAsyncThunk(
     "order/placeOrder",
-    async ({ tenantName, items }: { tenantName: string; items: string[] }, thunkAPI) => {
+    async ({ tenantName, items }: { tenantName: string; items: number[] }, thunkAPI) => {
         try {
             const response = await submitOrder(tenantName, { items });
             return response;

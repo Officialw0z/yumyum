@@ -8,8 +8,8 @@ export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />}>
             <Route index element={<Landing />} />
-            {/* { <Route path="/about" element={<Receipt />} /> */}
             <Route path="/status" element={<Status />} />/
+            {/* { <Route path="/about" element={<Receipt />} /> */}
         </Route>
     )
 )
