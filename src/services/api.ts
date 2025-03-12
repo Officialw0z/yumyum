@@ -36,8 +36,10 @@ interface OrderResponse {
     id: string;
     status: string;
     items: string[];
+    timestamp: string;
+    eta: string; // eta as string
+    order: string;
 }
-
 
 // FETCH api-key
 export const getApiKey = async (): Promise<string> => {
@@ -85,11 +87,17 @@ export const submitOrder = async (tenantName: string, order: Order): Promise<Ord
         throw new Error(`Error: ${response.status} - ${response.statusText}`);
     }
 
-    return response.json();
+    const data = await response.json();
+    console.log("📦 API-respons från submitOrder:", data); // 👈 Logga vad vi får tillbaka
+
+    // 💡 FIX: Returnera direkt det vi behöver
+    return {
+        id: data.order.id, // 👈 Plocka ut orderns ID
+        eta: data.order.eta // 👈 Plocka ut beräknad leveranstid
+    };
 };
 
 // FETCH menu
-
 export const getMenu = async (): Promise<MenuItem[]> => {
     const apIkey = await getApiKey();
     const response = await fetch(`${BASE_URL}/menu`, {
@@ -101,8 +109,6 @@ export const getMenu = async (): Promise<MenuItem[]> => {
     // Returnera direkt data.items, eftersom den redan matchar MenuItem[]
     return data.items;
 };
-
-
 
 // FETCH all orders
 export const getOrder = async (tenantName: string): Promise<OrderResponse[]> => {
@@ -132,7 +138,7 @@ export const getOrderById = async (tenantName: string, orderId: string): Promise
         },
     });
 
-    const data = await response.json();
+    const data: OrderResponse = await response.json();
     return data;
 };
 
@@ -150,5 +156,3 @@ export const getReceiptById = async (receiptId: string): Promise<void> => {
 
     return response.json();
 };
-
-

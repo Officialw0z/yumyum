@@ -6,8 +6,8 @@ import orderReducer from "./orderSlice";
 export const store = configureStore({
     reducer: {
         menu: menuReducer,
-        cart: cartReducer,  // Nu finns en reducer här
-        order: orderReducer, // Nu finns en reducer här
+        cart: cartReducer,
+        order: orderReducer,
     },
 });
 

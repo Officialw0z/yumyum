@@ -1,18 +1,42 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../redux/store";
-import { addToCart, decreaseFromCart, removeFromCart } from "../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
+import { RootState, AppDispatch } from "../redux/store";
+import { addToCart, decreaseFromCart, removeFromCart, clearCart } from "../redux/cartSlice";
+import { placeOrder } from "../redux/orderSlice";
 import trashcan from "../assets/trash.svg";
 import "../styles/Pages/cart.scss";
 
 const Cart: React.FC = () => {
     const [isCartVisible, setIsCartVisible] = useState(false);
-    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
     
     const cartItems = useSelector((state: RootState) => state.cart.items);
 
     const toggleCart = () => {
         setIsCartVisible(!isCartVisible);
+    };
+
+    const handleOrder = async () => {
+        if (cartItems.length === 0) return;
+
+        setLoading(true);
+
+        const tenantName = "your-tenant-name"; // Dynamiskt om du har flera tenants
+        const itemIds = cartItems.map((item) => item.id);
+
+        try {
+            await dispatch(placeOrder({ tenantName, items: itemIds })).unwrap();
+            console.log('API-respons från placeOrder:', Response);
+            dispatch(clearCart());
+            navigate("/status");
+        } catch (error) {
+            console.error("Orderfel:", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -60,7 +84,13 @@ const Cart: React.FC = () => {
                                 {cartItems.reduce((total, item) => total + item.price * item.quantity, 0)} SEK
                             </p>
                         </article>
-                        <button className="cart__lower--button">Lägg din order</button>
+                        <button 
+                            className="cart__lower--button" 
+                            onClick={handleOrder} 
+                            disabled={loading}
+                        >
+                            {loading ? "Skickar..." : "Lägg din order"}
+                        </button>
                     </section>
                 </section>
             )}
