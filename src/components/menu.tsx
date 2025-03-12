@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMenu } from "../redux/menuSlice";
+import { addToCart } from "../redux/cartSlice";
 import { RootState, AppDispatch } from "../redux/store";
 import "../Styles/Pages/menu.scss";
 
@@ -12,9 +13,9 @@ const Menu: React.FC = () => {
         dispatch(fetchMenu());
     }, [dispatch]);
 
-    const dips = menu.filter(item => item.type === "dip");
-    const drinks = menu.filter(item => item.type === "drink");
-    const wontons = menu.filter(item => item.type === "wonton");
+    const handleAddToCart = (id: number, name: string, price: number) => {
+        dispatch(addToCart({ id, name, price }));
+    };
 
     return (
         <article className="menu">
@@ -27,9 +28,12 @@ const Menu: React.FC = () => {
                 <>
                     {/* Wonton Section */}
                     <section className="menu__category">
-                       
-                        {wontons.map((item) => (
-                            <section key={item.id} className="menu__box">
+                        {menu.filter(item => item.type === "wonton").map((item) => (
+                            <section 
+                                key={item.id} 
+                                className="menu__box"
+                                onClick={() => handleAddToCart(item.id, item.name, item.price)}
+                            >
                                 <div className="menu__row">
                                     <h2 className="menu__underheader">{item.name.toUpperCase()}</h2>
                                     <div className="menu__dotted"></div>
@@ -45,8 +49,12 @@ const Menu: React.FC = () => {
                     <section className="menu__category">
                         <h2 className="menu__category-header">DIPSÅSER</h2>
                         <div className="menu__subcategory">
-                            {dips.map((item) => (
-                                <div key={item.id} className="menu__small-box">
+                            {menu.filter(item => item.type === "dip").map((item) => (
+                                <div 
+                                    key={item.id} 
+                                    className="menu__small-box"
+                                    onClick={() => handleAddToCart(item.id, item.name, item.price)}
+                                >
                                     <h3 className="menu__header--dropdown">{item.name}</h3>
                                     <p className="menu__price--dropdown">{item.price} SEK</p>
                                 </div>
@@ -58,8 +66,12 @@ const Menu: React.FC = () => {
                     <section className="menu__category">
                         <h2 className="menu__category-header">LÄSK</h2>
                         <div className="menu__subcategory">
-                            {drinks.map((item) => (
-                                <div key={item.id} className="menu__small-box">
+                            {menu.filter(item => item.type === "drink").map((item) => (
+                                <div 
+                                    key={item.id} 
+                                    className="menu__small-box"
+                                    onClick={() => handleAddToCart(item.id, item.name, item.price)}
+                                >
                                     <h3 className="menu__header--dropdown">{item.name}</h3>
                                     <p className="menu__price--dropdown">{item.price} SEK</p>
                                 </div>
