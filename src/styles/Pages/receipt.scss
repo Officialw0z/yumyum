@@ -1,0 +1,146 @@
+@use "../partials/variables.scss" as *;
+
+.wrappers {
+  display: flex;
+  background-color: $bg-color-primary;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  min-width: 440px;
+  max-width: 440px;
+  height: 100vh;
+  font-family: $font-primary;
+  color: $color-white;
+}
+
+.receipt__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: auto;
+  flex-grow: 1;
+  overflow-y: auto; /* För att göra kvittot scrollbart */
+}
+
+.receipt__logo {
+  align-self: flex-start;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.receipt__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 92%;
+  background-color: $bg-color-white;
+  color: $color-black;
+  margin-top: 20px;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.receipt__logo2 {
+  margin-top: 10%;
+  width: 41px;
+  height: 50px;
+}
+
+.receipt__header {
+margin-top: 5%;
+  letter-spacing: 2px;
+  font-size: $font-size-h1;
+}
+
+.receipt__items {
+    margin-top: 5%;
+  width: 100%;
+  padding-bottom: 60px; /* Lägg till utrymme för att kunna scrolla */
+}
+
+.receipt__item {
+  display: flex;
+  justify-content: space-between; /* Placera namn och pris på samma nivå */
+  align-items: flex-end; /* Placera alla element vertikalt i mitten */
+}
+
+.receipt__item-left {
+  font-size: $font-size-xl;
+  min-width: fit-content;
+  font-weight: $font-weight-bold;
+  display: flex;
+  flex-direction: column; /* Här ändras flex-riktningen till kolumn */
+    
+}
+
+.receipt__dotted {
+    margin-bottom: 2%;
+  width: 100%;
+  border-bottom: 1px dashed $color-black;
+  margin-left: 5px;
+  margin-right: 5px; /* Lägger till lite utrymme runt linjen */
+
+}
+
+.receipt__item-right {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;;
+  text-align: right;
+  flex-shrink: 0; /* Förhindrar att priset krymper */
+}
+
+.receipt__item-quantity {
+  font-size: $font-size-md;
+  font-weight: $font-weight-normal;
+  color: $color-black;
+  margin-bottom: 10%;
+}
+
+.receipt__lower--article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 112%;
+  background-color: $bg-color-light-grey;
+  padding: 5%;
+  bottom: 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Lägger till en liten skugga */
+}
+
+.receipt__lower--header {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+}
+
+.receipt__lower--price {
+  font-size: $font-size-h1;
+  font-weight: $font-weight-bold;
+  text-align: right;
+}
+
+.receipt__moms {
+  text-align: right;
+  font-size: $font-size-md;
+}
+
+.receipt__lower--left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.receipt__neworder--btn {
+  width: 90%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-bold;
+  background-color: $bg-color-black;
+  color: $color-white;
+  cursor: pointer;
+  margin-bottom: 5%;
+}

@@ -23,29 +23,39 @@ const Cart: React.FC = () => {
 
     const handleOrder = async () => {
         if (cartItems.length === 0) return;
-
+    
         setLoading(true);
-
-        const tenantName = "your-tenant-name"; // Dynamiskt om du har flera tenants
-        /* const itemIds = cartItems.map((item) => item.id); */
+    
+        const tenantName = "your-tenant-name"; 
+       
         const itemIds = cartItems.reduce<number[]>((acc, item) => {
             for (let i = 0; i < item.quantity; i++) {
-              acc.push(item.id);
+                acc.push(item.id);
             }
             return acc;
-          }, []);
-
+        }, []);
+    
         try {
-            await dispatch(placeOrder({ tenantName, items: itemIds })).unwrap();
-            console.log('API-respons från placeOrder:', Response);
-            dispatch(clearCart());
+            // 🛒 Skicka ordern till API:et
+            const orderResponse = await dispatch(placeOrder({ tenantName, items: itemIds })).unwrap();
+            
+            console.log('API-respons från placeOrder:', orderResponse);
+            
+            dispatch(clearCart()); // Rensa varukorgen efter beställning
+            
+            // 🔹 Spara order-ID i localStorage så vi kan hämta det på ETAScreen
+            localStorage.setItem("latestOrderId", orderResponse.id);
+            
+            // 🚀 Navigera till ETA-skärmen
             navigate("/status");
+            
         } catch (error) {
             console.error("Orderfel:", error);
         } finally {
             setLoading(false);
         }
     };
+    
 
     const cartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
 

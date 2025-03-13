@@ -40,6 +40,7 @@ export interface OrderResponse {
     eta: string; // eta as string or null
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     order: any | null;
+    receipt: string;
 }
 
 // FETCH api-key
@@ -99,6 +100,7 @@ export const submitOrder = async (tenantName: string, order: Order): Promise<Ord
         timestamp: data.order.timestamp,
         eta: data.order.eta, // 👈 Plocka ut beräknad leveranstid
         order: data.order.order,
+        receipt: data.receipt
     };
 };
 
@@ -148,7 +150,7 @@ export const getOrderById = async (tenantName: string, orderId: string): Promise
 };
 
 // FETCH receipt by ID
-export const getReceiptById = async (receiptId: string): Promise<void> => {
+export const getReceiptById = async (receiptId: string): Promise<OrderResponse> => {
     const apiKey = await getApiKey();
 
     const response = await fetch(`${BASE_URL}/receipts/${receiptId}`, {
@@ -159,5 +161,11 @@ export const getReceiptById = async (receiptId: string): Promise<void> => {
         },
     });
 
-    return response.json();
+    if (!response.ok) {
+        throw new Error(`Error: ${response.status} - ${response.statusText}`);
+    }
+
+    const data: OrderResponse = await response.json();
+    console.log("🧾 API-respons från getReceiptById:", data); // Logga vad vi får tillbaka
+    return data;
 };
