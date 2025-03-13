@@ -14,7 +14,7 @@ const Menu: React.FC = () => {
     }, [dispatch]);
 
     const handleAddToCart = (id: string, name: string, price: number) => {
-        dispatch(addToCart({ id, name, price, quantity: 1 }));
+        dispatch(addToCart({ id: Number(id), name, price, quantity: 1 }));
     };
 
     return (

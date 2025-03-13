@@ -38,7 +38,8 @@ export interface OrderResponse {
     items: string[];
     timestamp: string;
     eta: string; // eta as string or null
-    order: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    order: any | null;
 }
 
 // FETCH api-key

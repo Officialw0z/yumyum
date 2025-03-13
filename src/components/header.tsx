@@ -10,9 +10,13 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ children}) => {
     return (
         <article className="wrapper">
+            
             <div className="background">
+                
                 <img src="/src/assets/Logo.png" alt="Logo" className="logo"/>
-                <Cart /></div>
+                <Cart />
+                
+                </div>
             {children}  {/* Här renderas children */}
         </article>
     );

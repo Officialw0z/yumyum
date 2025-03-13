@@ -123,3 +123,25 @@
     color: $color-white;
     cursor: pointer;
 }
+
+.Cart__box {
+    position: relative;
+    cursor: pointer;
+}
+
+.Cart__box--count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #eb5757;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+

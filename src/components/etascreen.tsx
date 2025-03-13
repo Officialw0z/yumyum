@@ -3,7 +3,6 @@ import { RootState } from "../redux/store";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getOrderById } from "../services/api";
-import StatusPage from "../pages/Status";
 import "../styles/Pages/status.scss";
 import Logo from "../assets/Logo.png";
 import CartBox from "../assets/boxtop 1.png";
@@ -94,7 +93,7 @@ export const Status: React.FC = () => {
 
   return (
     <section className="status">
-      <StatusPage />
+      
       {loading ? (
         <p>Laddar...</p>
       ) : (
@@ -110,7 +109,7 @@ export const Status: React.FC = () => {
                 <p className="status__time">{timeLeft}</p>
               )}
 
-              <p className="status__orderid">Ordernummer: {orderId}</p>
+              <p className="status__orderid">Ordernummer: #{orderId}</p>
               <div className="status__btns">
                 <button className="status__neworder--btn" onClick={handleNewOrder}>
                   GÖR EN NY BESTÄLLNING

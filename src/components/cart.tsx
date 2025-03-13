@@ -47,12 +47,15 @@ const Cart: React.FC = () => {
         }
     };
 
+    const cartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+
     return (
         <>
             <span className="Cart__box" onClick={toggleCart}>
                 <img src="/src/assets/Cart.png" alt="Cart" className="Cart__box--img" />
+                {cartQuantity > 0 && <span className="Cart__box--count">{cartQuantity}</span>}
             </span>
-            
+    
             {isCartVisible && (
                 <section className="cart">
                     

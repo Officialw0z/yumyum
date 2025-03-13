@@ -8,8 +8,8 @@ const Landing: React.FC = () => {
    
     return (
         <>
-         
-             <Header>
+
+             <Header onCartClick={() => { /* handle cart click */ }}>
                 <Menu />
                 </Header>
         </>
