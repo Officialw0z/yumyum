@@ -1,18 +1,17 @@
-// BASE URL
+// Base API URL
 const BASE_URL = 'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com';
 
-// Type for API-key response
+// API response types
 interface ApiKeyResponse {
     key: string;
 }
 
-// Type for Tenant
 interface TenantResponse {
     name: string;
     id: string;
 }
 
-// Type for Menu Item
+// Define the structure of a menu item
 export interface MenuItem {
     id: string;
     name: string;
@@ -21,36 +20,36 @@ export interface MenuItem {
     type: string;
 }
 
-// Type for Menu response (including items)
+// Define the structure of a menu response
 interface MenuResponse {
     items: MenuItem[];
 }
 
-// Type for Order
+// Define the structure of an order request
 interface Order {
     items: number[];
 }
 
-// Type for Order response
+// Define the structure of an order response
 export interface OrderResponse {
     id: string;
-    status: string ;
+    status: string;
     items: string[];
     timestamp: string;
-    eta: string; // eta as string or null
+    eta: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    order: any | null;
+    order: any | null; 
     receipt: string;
 }
 
-// FETCH api-key
+// Fetch an API key
 export const getApiKey = async (): Promise<string> => {
     const response = await fetch(`${BASE_URL}/keys`, { method: 'POST' });
     const data: ApiKeyResponse = await response.json();
     return data.key;
 };
 
-// Create Tenant
+// Register a new tenant
 export const registerTenant = async (tenantName: string): Promise<TenantResponse> => {
     const apiKey = await getApiKey();
 
@@ -71,7 +70,7 @@ export const registerTenant = async (tenantName: string): Promise<TenantResponse
     return response.json();
 };
 
-// Send order
+// Submit an order
 export const submitOrder = async (tenantName: string, order: Order): Promise<OrderResponse> => {
     const apiKey = await getApiKey();
 
@@ -90,34 +89,31 @@ export const submitOrder = async (tenantName: string, order: Order): Promise<Ord
     }
 
     const data = await response.json();
-    console.log("📦 API-respons från submitOrder:", data); // 👈 Logga vad vi får tillbaka
+    console.log("📦 API response from submitOrder:", data);
 
-    // 💡 FIX: Returnera direkt det vi behöver
     return {
-        id: data.order.id, // 👈 Plocka ut orderns ID
+        id: data.order.id,
         status: data.order.status,
         items: data.order.items,
         timestamp: data.order.timestamp,
-        eta: data.order.eta, // 👈 Plocka ut beräknad leveranstid
+        eta: data.order.eta,
         order: data.order.order,
         receipt: data.receipt
     };
 };
 
-// FETCH menu
+// Fetch the menu from the API
 export const getMenu = async (): Promise<MenuItem[]> => {
-    const apIkey = await getApiKey();
+    const apiKey = await getApiKey();
     const response = await fetch(`${BASE_URL}/menu`, {
         method: 'get',
-        headers: { 'x-zocom': apIkey, accept: 'application/json' },
+        headers: { 'x-zocom': apiKey, accept: 'application/json' },
     });
-    const data: MenuResponse = await response.json();  // Typa som MenuResponse
-    
-    // Returnera direkt data.items, eftersom den redan matchar MenuItem[]
+    const data: MenuResponse = await response.json();
     return data.items;
 };
 
-// FETCH all orders
+// Fetch all orders for a tenant
 export const getOrder = async (tenantName: string): Promise<OrderResponse[]> => {
     const apiKey = await getApiKey();
 
@@ -133,7 +129,7 @@ export const getOrder = async (tenantName: string): Promise<OrderResponse[]> => 
     return data.items;
 };
 
-// FETCH order by ID
+// Fetch an order by ID
 export const getOrderById = async (tenantName: string, orderId: string): Promise<OrderResponse> => {
     const apiKey = await getApiKey();
 
@@ -149,7 +145,7 @@ export const getOrderById = async (tenantName: string, orderId: string): Promise
     return data;
 };
 
-// FETCH receipt by ID
+// Fetch a receipt by ID
 export const getReceiptById = async (receiptId: string): Promise<OrderResponse> => {
     const apiKey = await getApiKey();
 
@@ -166,6 +162,6 @@ export const getReceiptById = async (receiptId: string): Promise<OrderResponse> 
     }
 
     const data: OrderResponse = await response.json();
-    console.log("🧾 API-respons från getReceiptById:", data); // Logga vad vi får tillbaka
+    console.log("🧾 API response from getReceiptById:", data);
     return data;
 };

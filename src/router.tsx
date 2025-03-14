@@ -9,7 +9,7 @@ export const router = createBrowserRouter(
         <Route path="/" element={<App />}>
             <Route index element={<Landing />} />
             <Route path="/status" element={<StatusPage />} />
-            <Route path="/receipt/:orderId" element={<ReceiptPage />} /> {/* Se till att den är korrekt */}
+            <Route path="/receipt/:orderId" element={<ReceiptPage />} />
         </Route>
     )
 );

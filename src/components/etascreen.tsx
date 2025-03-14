@@ -26,7 +26,7 @@ export const Status: React.FC = () => {
       return;
     }
 
-    // 🔹 Spara order-ID i localStorage så vi kan hämta det i Receipt.tsx
+    
     localStorage.setItem("latestOrderId", orderId);
 
     const fetchOrderStatus = async () => {
@@ -111,7 +111,6 @@ export const Status: React.FC = () => {
                   GÖR EN NY BESTÄLLNING
                 </button>
 
-                {/* 🔹 Navigerar till kvitto och skickar med orderId */}
                 <button 
                   className="status__receipt" 
                   onClick={() => navigate(`/receipt/${orderId}`)}

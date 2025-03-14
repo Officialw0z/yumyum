@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { submitOrder } from "../services/api";
 
-// Typ för Redux state
+// Define the state structure for an order
 interface OrderState {
     currentOrder: {
         orderId: string | null;
@@ -11,7 +11,7 @@ interface OrderState {
     error: string | null;
 }
 
-// Initialt state
+// Initial state
 const initialState: OrderState = {
     currentOrder: {
         orderId: null,
@@ -21,7 +21,7 @@ const initialState: OrderState = {
     error: null,
 };
 
-// Async thunk för att skicka en order
+// Async action to place an order
 export const placeOrder = createAsyncThunk(
     "order/placeOrder",
     async ({ tenantName, items }: { tenantName: string; items: number[] }, thunkAPI) => {
@@ -29,17 +29,18 @@ export const placeOrder = createAsyncThunk(
             const response = await submitOrder(tenantName, { items });
             return response;
         } catch (error) {
-            console.error("Orderfel:", error);
-            return thunkAPI.rejectWithValue("Misslyckades att skicka ordern.");
+            console.error("Order error:", error);
+            return thunkAPI.rejectWithValue("Failed to place the order.");
         }
     }
 );
 
-// Order slice
+// Create the order slice
 const orderSlice = createSlice({
     name: "order",
     initialState,
     reducers: {
+        // Reset the order state
         clearOrder: (state) => {
             state.currentOrder.orderId = null;
             state.currentOrder.eta = null;
@@ -53,12 +54,11 @@ const orderSlice = createSlice({
                 state.currentOrder.status = "loading";
             })
             .addCase(placeOrder.fulfilled, (state, action: PayloadAction<{ id: string; eta: string }>) => {
-                console.log("✅ Order sparad i Redux:", action.payload); // 👈 Logga vad Redux får
+                console.log("✅ Order saved in Redux:", action.payload);
                 state.currentOrder.orderId = action.payload.id;
                 state.currentOrder.eta = action.payload.eta;
                 state.currentOrder.status = "success";
             })
-            
             .addCase(placeOrder.rejected, (state, action) => {
                 state.currentOrder.status = "failed";
                 state.error = action.payload as string;

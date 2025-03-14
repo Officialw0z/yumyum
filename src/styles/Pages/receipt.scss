@@ -21,7 +21,7 @@
   height: 100%;
   min-height: auto;
   flex-grow: 1;
-  overflow-y: auto; /* För att göra kvittot scrollbart */
+  overflow-y: auto; 
 }
 
 .receipt__logo {
@@ -57,13 +57,13 @@ margin-top: 5%;
 .receipt__items {
     margin-top: 5%;
   width: 100%;
-  padding-bottom: 60px; /* Lägg till utrymme för att kunna scrolla */
+  padding-bottom: 60px; 
 }
 
 .receipt__item {
   display: flex;
-  justify-content: space-between; /* Placera namn och pris på samma nivå */
-  align-items: flex-end; /* Placera alla element vertikalt i mitten */
+  justify-content: space-between; 
+  align-items: flex-end; 
 }
 
 .receipt__item-left {
@@ -71,7 +71,7 @@ margin-top: 5%;
   min-width: fit-content;
   font-weight: $font-weight-bold;
   display: flex;
-  flex-direction: column; /* Här ändras flex-riktningen till kolumn */
+  flex-direction: column; 
     
 }
 
@@ -80,7 +80,7 @@ margin-top: 5%;
   width: 100%;
   border-bottom: 1px dashed $color-black;
   margin-left: 5px;
-  margin-right: 5px; /* Lägger till lite utrymme runt linjen */
+  margin-right: 5px; 
 
 }
 
@@ -88,7 +88,7 @@ margin-top: 5%;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;;
   text-align: right;
-  flex-shrink: 0; /* Förhindrar att priset krymper */
+  flex-shrink: 0; 
 }
 
 .receipt__item-quantity {
@@ -106,7 +106,7 @@ margin-top: 5%;
   background-color: $bg-color-light-grey;
   padding: 5%;
   bottom: 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Lägger till en liten skugga */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
 }
 
 .receipt__lower--header {

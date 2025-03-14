@@ -1,16 +1,13 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { getMenu, MenuItem } from "../services/api";
 
-// Typ för en menyartikel
-// Removed duplicate MenuItem interface
-
-// Typ för Redux state
+// Define the state structure for the menu
 interface MenuState {
     items: MenuItem[];
     status: "idle" | "loading" | "succeeded" | "failed";
 }
 
-// Hämta meny från API
+// Async action to fetch the menu from the API
 export const fetchMenu = createAsyncThunk<MenuItem[]>(
     "menu/fetchMenu", 
     async () => {
@@ -18,11 +15,13 @@ export const fetchMenu = createAsyncThunk<MenuItem[]>(
     }
 );
 
+// Initial state
 const initialState: MenuState = {
     items: [],
     status: "idle",
 };
 
+// Create the menu slice
 const menuSlice = createSlice({
     name: "menu",
     initialState,

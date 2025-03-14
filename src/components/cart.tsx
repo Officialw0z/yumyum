@@ -36,17 +36,17 @@ const Cart: React.FC = () => {
         }, []);
     
         try {
-            // 🛒 Skicka ordern till API:et
+           
             const orderResponse = await dispatch(placeOrder({ tenantName, items: itemIds })).unwrap();
             
             console.log('API-respons från placeOrder:', orderResponse);
             
-            dispatch(clearCart()); // Rensa varukorgen efter beställning
+            dispatch(clearCart()); 
             
-            // 🔹 Spara order-ID i localStorage så vi kan hämta det på ETAScreen
+          
             localStorage.setItem("latestOrderId", orderResponse.id);
             
-            // 🚀 Navigera till ETA-skärmen
+            
             navigate("/status");
             
         } catch (error) {
@@ -69,7 +69,7 @@ const Cart: React.FC = () => {
             {isCartVisible && (
                 <section className="cart">
                     
-                    {/* Omslut varorna med en div för att hantera scrollning */}
+                   
                     <div className="cart__items">
                         {cartItems.length === 0 ? (
                             <p className="cart__empty">Din varukorg är tom.</p>
@@ -97,7 +97,7 @@ const Cart: React.FC = () => {
                         )}
                     </div>
 
-                    {/* Totalsumma + orderknapp längst ner */}
+                    
                     <section className="cart__lower--wrapper">
                         <article className="cart__lower--article">
                             <h3 className="cart__lower--header">Totalt</h3>

@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getReceiptById } from "../services/api"; // Importera rätt API-funktion
+import { getReceiptById } from "../services/api";
 import Logo from "../assets/Logo.png";
 import Logo2 from "../assets/logo2.png";
 import "../styles/Pages/receipt.scss";
 import { useNavigate } from "react-router-dom";
 
 const Receipt: React.FC = () => {
-  const { orderId } = useParams(); // Hämta orderId från URL
-  const [receipt, setReceipt] = useState<any | null>(null); // Typen är valfri här för att matcha API-responsen
+  const { orderId } = useParams();
+  const [receipt, setReceipt] = useState<any | null>(null); 
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const handleNewOrder = () => {
@@ -23,11 +23,11 @@ const Receipt: React.FC = () => {
 
       try {
         console.log("🔍 Hämtar kvitto för orderId:", orderId);
-        const receiptData = await getReceiptById(orderId); // Hämtar kvitto från API
+        const receiptData = await getReceiptById(orderId); 
         console.log("✅ Kvitto-data:", receiptData);
 
-        // Antag att response har formen {receipt: {...}}
-        setReceipt(receiptData.receipt); // Sätt kvittodata till state
+        
+        setReceipt(receiptData.receipt);
       } catch (error) {
         console.error("❌ Fel vid hämtning av kvitto:", error);
       } finally {

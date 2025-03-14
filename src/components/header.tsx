@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ children}) => {
                 <Cart />
                 
                 </div>
-            {children}  {/* Här renderas children */}
+            {children} 
         </article>
     );
 }
